@@ -27,10 +27,7 @@ export const Container = styled.section`
         }
     }
 
-    @media (min-width: 1024px) {
-        padding-inline: 12.3rem;
-        margin-bottom: 2.4rem;
-
+    @media (min-width: 768px) {
         > header{
             h3{
                 font-size: 3.2rem;
@@ -44,6 +41,10 @@ export const Container = styled.section`
                 }
             }
         }
+    }
 
+    @media (min-width: 1024px) {
+        padding-inline: 12.3rem;
+        margin-bottom: 2.4rem;
     }
 `

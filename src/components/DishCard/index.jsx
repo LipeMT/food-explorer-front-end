@@ -27,10 +27,10 @@ export function DishCard({ title, image, price, id, description, editButtonActio
             <Price>R$ {price}</Price>
             {
                 user.role !== "admin" &&
-                <>
+                <div className="actions">
                     <Quantity />
                     <Button title="incluir" />
-                </>
+                </div>
             }
         </Container>
     )

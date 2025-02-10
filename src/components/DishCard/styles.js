@@ -8,10 +8,9 @@ export const Container = styled.div`
     gap: 1.2rem;
 
     height: 29.2rem;
+    width: 21rem;
 
-    padding: 2.4rem;
-
-    min-height: 29.2rem;
+    padding: 2.4rem 1.6rem;
 
     border-radius: .8rem;
 
@@ -27,10 +26,21 @@ export const Container = styled.div`
      
     > img {
         width: 8.8rem;
-        height: fit-content;
+        height: 8.8rem;
 
         border-radius: 50%;
         object-fit: cover;
+    }
+
+    .actions{
+
+        width: 100%;
+        padding-inline: 2.4rem;
+        
+        > button{
+            height: 3.2rem;
+            width: 100%;
+        }
     }
 
     @media (min-width: 768px){
@@ -41,15 +51,27 @@ export const Container = styled.div`
             font-size: 2.4rem;
             font-weight: bold;
         }
-
+ 
         > img {
             width: 17.6rem;
             height: 17.6rem;
             margin-bottom: 2rem;
         }
 
-        height: fit-content;
+        width: 30.4rem;
+        height: 46.2rem;
+
+        .actions{
+            display: flex;
+            flex-direction: row;
+            gap: 1.6rem;
+
+            > button{
+            height: auto;
+            }
+        }
     }
+
 `
 
 export const FavoriteButton = styled.button`
@@ -117,22 +139,32 @@ export const Quantity = styled.div`
             color: white;
         }
     }
+
+    @media (min-width: 768px){
+        
+    }
 `
 
 export const Description = styled.p`
-    opacity: 0;
-    transition: opacity .5s ease;
-    height: 0;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     overflow: hidden;
+    text-overflow: ellipsis;
 
     color: ${({ theme }) => theme.COLORS.LIGHT_400};
     font-size: 1.6rem;
     text-align: center;
-
     font-family: "Roboto", serif;
-    @media (min-width: 768px){
+
+    opacity: 0;
+    transition: opacity .5s ease;
+    height: 0;
+    display: none;
+
+
+    @media (min-width: 768px) {
         opacity: 1;
-        width: auto;
-        height: auto;
+        height: fit-content;
+        display: -webkit-box;
     }
-`
+`;

@@ -36,7 +36,7 @@ export function Routes() {
     }, [])
 
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/food-explorer-front-end">
             {user ? <AccessRoutes /> : <AuthRoutes />}
         </BrowserRouter>
     )
