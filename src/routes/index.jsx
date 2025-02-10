@@ -22,7 +22,7 @@ export function Routes() {
       }, [])
 
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/food-explorer-front-end">
             {user ? <AppRoutes /> : <AuthRoutes />}
         </BrowserRouter>
     )
