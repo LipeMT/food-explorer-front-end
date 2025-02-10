@@ -92,7 +92,6 @@ export function Home() {
     }, []);
 
     useEffect(() => {
-        console.log("Entrou aqui")
         async function fetchData() {
             const [categoriesResponse, dishesResponse] = await Promise.all([
                 api.get('/categories'),
