@@ -45,6 +45,13 @@ export const Form = styled.form`
             text-align: left;
         }
     } 
+    
+    > a{
+        color: ${({theme}) => theme.COLORS.LIGHT_100};
+        text-decoration: none;
+        font-size: 1.6rem;    
+        font-family: "Poppins", sans-serif;
+    }
 
     @media (min-width: 768px) {
         background-color: ${({ theme }) => theme.COLORS.DARK_700};

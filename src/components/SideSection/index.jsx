@@ -1,9 +1,19 @@
 import { Container } from "./styles";
 
-export function SideSection({title}){
+import { Link } from "react-router-dom";
+
+export function SideSection({ title, onClick, url }) {
+
     return (
         <Container>
-            <h2>{title}</h2>
+            <Link to={url}>
+                <button
+                    type="button"
+                    onClick={onClick}
+                >
+                    {title}
+                </button>
+            </Link>
         </Container>
     )
 }

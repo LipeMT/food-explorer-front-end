@@ -11,11 +11,16 @@ export const Container = styled.div`
 
     border-radius: .8rem;
 
+    &.gray {
+        background-color: ${({ theme }) => theme.COLORS.DARK_800};
+    }
+
     > input{
         width: 100%;
-
-
         padding: 1.2rem 1.4rem;
+
+        font-size: 1.6rem;
+        height: 4.8rem;
 
         color: ${({ theme }) => theme.COLORS.LIGHT_100};
         background: transparent;
@@ -31,5 +36,4 @@ export const Container = styled.div`
     > svg{
         margin-left: 1.6rem;
     }
-
 `

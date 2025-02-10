@@ -1,26 +1,35 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 100%;
-    grid-template-areas: 
-    "header"
-    "content"
-    "footer";
-
     height: 100vh;
-`
+    display: flex;
+    flex-direction: column;
+
+    > header {
+        height: 114px;
+        flex-shrink: 0;
+    }
+
+    > main {
+        flex-grow: 1;
+        overflow-y: auto;
+    }
+
+    > footer {
+        height: 77px;
+        flex-shrink: 0;
+    }
+`;
 
 export const Main = styled.main`
-    grid-area: content;
+    
     overflow-y: auto;
     scrollbar-width: none;
-    padding-bottom: 6rem;
+
+    padding-bottom: 3.4rem;
 `
 
 export const Intro = styled.div`
-
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -38,6 +47,8 @@ export const Intro = styled.div`
         overflow-y: visible;
         margin-left: -2rem;
         margin-top: -3rem;
+
+        transition: all .5s ease-in-out;
     }
 
     > section {
@@ -56,6 +67,50 @@ export const Intro = styled.div`
             font-size: 1.2rem;
             font-family: "Poppins", sans-serif;
             color: ${({ theme }) => theme.COLORS.LIGHT_300};
+        }
+    }
+
+    @media (min-width: 768px){
+
+        >img {
+            margin-bottom: -.7rem;
+            width: 40rem;
+            height: auto;
+            object-fit: cover;
+        }
+
+        > section {
+            gap: .6rem;
+
+            h2{
+                font-size: 3.2rem;
+                font-weight: 500;
+            }
+            p {
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+    @media (min-width: 1024px){
+        margin: 16.4rem 12.4rem 6.2rem;
+        height: 26rem;
+        
+        > img {
+            margin-left: -9.4rem;
+            margin-top: -9.4rem;
+            width: 60rem;
+        }
+        > section {
+            gap: .8rem;
+
+            h2{
+                font-size: 4rem;
+                font-weight: 500;
+            }
+            p {
+                font-size: 1.6rem;
+            }
         }
     }
 

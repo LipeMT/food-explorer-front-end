@@ -1,30 +1,20 @@
 import styled from "styled-components";
 
 export const Container = styled.footer`
-    grid-area: footer;
+    
     
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 6rem;
-    
-    padding: 2.8rem 3rem;
 
-    width: 100%;
-    height: 7.7rem;
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
-    position: absolute;
-    bottom: 0;
 
-    z-index: 10;
+    padding-inline: 2.8rem;
+    gap: 2rem;
 
-    > div{
-        width: fit-content;
-        color: ${({ theme }) => theme.COLORS.LIGHT_100};
-
-        svg{
-            color: ${({ theme }) => theme.COLORS.LIGHT_100};
-        }
+    > p {
+        text-align: center;
+        overflow: hidden;
     }
 
     @media (min-width: 768px){

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.aside`
 
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto 1fr 77px;
     grid-template-areas: 
     "header"
     "content"
@@ -12,7 +12,7 @@ export const Container = styled.aside`
     width: 100%;
     height: 100vh;
     position: absolute;
-    z-index: 10;
+    z-index: 3;
     
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
@@ -25,7 +25,7 @@ export const Container = styled.aside`
 `
 
 export const Header = styled.header`
-    grid-area: header;
+    
 
     padding: 5.6rem 2.8rem 2.4rem;
 
@@ -56,7 +56,7 @@ export const Header = styled.header`
 export const Main = styled.main`
     background-color: ${({theme}) => theme.COLORS.DARK_400};
 
-    grid-area: content;
+    
     padding: 3.6rem 2.8rem;
 
     width: 100%;

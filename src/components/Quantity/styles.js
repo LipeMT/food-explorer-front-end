@@ -7,6 +7,11 @@ export const Container = styled.div`
     gap: 1.4rem;
     color: white;
     margin-bottom: .2rem;
+    font-size: 2.4rem;
+
+    > span{
+        margin-top: -.8rem
+    }
     
     > button {
         svg {

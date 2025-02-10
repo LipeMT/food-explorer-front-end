@@ -1,12 +1,14 @@
-import { Children } from "react";
 import { Container } from "./styles";
 
-export function Button({title, icon: Icon, children, ...rest}){
+export function Button({ title, icon: Icon, loading = false, ...rest }) {
     return (
-        <Container {...rest}>
+        <Container
+            type='button'
+            disabled={loading}
+            {...rest}
+        >
             {Icon && <Icon size={20} />}
-            {title}
-            {children}
+            {loading ? 'Carregando...' : title}
         </Container>
     )
 }

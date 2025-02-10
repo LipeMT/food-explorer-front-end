@@ -23,6 +23,11 @@ export default createGlobalStyle`
 
     button, a{
         cursor: pointer;
+        transition: filter .2s ease-in-out;
+    }
+
+    button:hover, a:hover {
+        filter: opacity(0.7);
     }
 
     @media (min-width: 768px) {

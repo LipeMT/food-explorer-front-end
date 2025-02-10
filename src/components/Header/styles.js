@@ -1,23 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-    grid-area: header;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2.8rem 10%;
-    gap: 3.2rem;
-    height: 10.4rem;
-
-    position: absolute;
-    width: 100%;
-    top: 0;
 
     background-color: ${({ theme }) => theme.COLORS.DARK_600};
+
+    padding-inline: 2.8rem;
     
-    > img{
-        width: 3rem;
-        height: 3rem;
+    img{
+        width: 2.5rem;
+        height: 2.5rem;
     }
 
     > h2{
@@ -25,13 +20,44 @@ export const Container = styled.header`
         font-size: 2.4rem;
     }
 
-    @media (max-width: 768px){
-        padding: 5.6rem 2.8rem 2.4rem;
-        height: 11.4rem;
+    #new-dish{
+        display: none;
+    }
 
-        > div:nth-child(3){
-            display: none;
+    @media (min-width: 768px) {
+        gap: 3.2rem;
+
+        #new-dish {
+            display: block;
+            max-width: fit-content;
         }
+    }
+
+    @media (min-width: 850px) {
+        padding-inline: 10rem;
+    }
+`
+
+export const Search = styled.div`
+
+    width: 100%;
+    display: none;
+    
+    @media(min-width: 768px){
+        display: block;
+    }
+`
+
+export const Menu = styled.button` 
+    border: none;
+    background: none;
+    padding: none;
+
+    color: ${({ theme }) => theme.COLORS.LIGHT_100};
+    font-size: 2.4rem;
+
+    @media (min-width: 768px){
+        display: none;
     }
 `
 
@@ -44,8 +70,10 @@ export const Logout = styled.button`
         font-size: 2.4rem;
     }
 
-    @media (max-width: 768px){
-        display: none;
+    display: none;
+
+    @media (min-width: 768px){
+        display: block;
     }
 `
 
@@ -58,6 +86,8 @@ export const Order = styled.button`
     justify-content: center;
     gap: 1rem;
 
+    white-space: nowrap;
+
     position: relative;
 
     >svg{
@@ -68,8 +98,6 @@ export const Order = styled.button`
     
     color: ${({ theme }) => theme.COLORS.LIGHT_100};
     background-color: ${({ theme }) => theme.COLORS.TINTS_TOMATO_100};
-
-    width: 100%;
     
     padding: 1.2rem 3.2rem;
    
@@ -105,15 +133,3 @@ export const Order = styled.button`
     }
 `
 
-export const Menu = styled.button`
-    border: none;
-    background: none;
-    padding: none;
-
-    color: ${({ theme }) => theme.COLORS.LIGHT_100};
-    font-size: 2.4rem;
-
-    @media (min-width: 768px){
-        display: none;
-    }
-`
