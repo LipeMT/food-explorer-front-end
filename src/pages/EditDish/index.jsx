@@ -162,7 +162,7 @@ export function EditDish() {
         fetchCategory()
         fetchDish()
 
-    }, [categories])
+    }, [modalIsOpen])
 
     return (
         <Container>
