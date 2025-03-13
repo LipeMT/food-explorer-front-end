@@ -13,7 +13,7 @@ function AuthProvider({ children }) {
             const response = await api.post('/sessions', { email, password }, { withCredentials: true })
 
             const { user } = response.data
-            sessionStorage.setItem('@food-explorer:user', JSON.stringify(user))
+            localStorage.setItem('@food-explorer:user', JSON.stringify(user))
 
             setData({ user })
         }
@@ -30,7 +30,7 @@ function AuthProvider({ children }) {
     async function signOut() {
         try {
             await api.delete('/sessions')
-            sessionStorage.removeItem('@food-explorer:user')
+            localStorage.removeItem('@food-explorer:user')
             setData({})
         } catch (err) {
             if (err.response) {
@@ -42,7 +42,7 @@ function AuthProvider({ children }) {
     }
 
     useEffect(() => {
-        const user = sessionStorage.getItem('@food-explorer:user')
+        const user = localStorage.getItem('@food-explorer:user')
 
         if (user) {
             setData({ user: JSON.parse(user) })

@@ -1,6 +1,6 @@
 import { Container, Main, Description, DishDetails, Ingredients, Ingredient, Order } from "./styles";
 
-import { useNavigate, useParams, useResolvedPath } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../hooks/auth"
 
 import { FiArrowLeft } from "react-icons/fi";
@@ -64,7 +64,7 @@ export function Details() {
                         {
                             dish.ingredients &&
                             <Ingredients>
-                                {dish.ingredients.map(ingredient => <Ingredient key={ingredient.id}>{ingredient.name}</Ingredient>)}
+                                {dish.ingredients.map(ingredient => <Ingredient key={ingredient}>{ingredient}</Ingredient>)}
                             </Ingredients>
                         }
                         {

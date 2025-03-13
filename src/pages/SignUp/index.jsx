@@ -31,6 +31,7 @@ export function SignUp() {
                 if (error.response) {
                     return alert(error.response.data.message)
                 }
+                console.error(error)
                 alert("Erro ao cadastrar usuário!")
             })
     }

@@ -105,6 +105,7 @@ export function Home() {
         fetchData();
     }, [categoryId]);
 
+
     const filteredDishes = dishes.filter(dish => {
         const matchesSearch = dish.name.toLowerCase().includes(search.toLowerCase()) ||
             dish.ingredients.some(ingredient => ingredient.name.toLowerCase().includes(search.toLowerCase()));
@@ -114,7 +115,7 @@ export function Home() {
 
     const dishesByCategory = categories.map(category => ({
         ...category,
-        dishes: filteredDishes.filter(dish => dish.category_id === category.id)
+        dishes: filteredDishes.filter(dish => dish.category === category._id)
     }));
 
     return (
@@ -152,15 +153,15 @@ export function Home() {
                     }
 
                     return (
-                        <SliderSection key={category.id} title={category.name} onClick={() => handleOpenModal(category.id, category.name)}>
+                        <SliderSection key={category._id} title={category.name} onClick={() => handleOpenModal(category._id, category.name)}>
                             {category.dishes.map(dish => (
                                 <DishCard
-                                    editButtonAction={() => handleEditDish(dish.id)}
-                                    key={dish.id}
+                                    editButtonAction={() => handleEditDish(dish._id)}
+                                    key={dish._id}
                                     image={`${api.defaults.baseURL}/files/${dish.image}`}
                                     title={`${dish.name} >`}
                                     price={dish.price}
-                                    id={dish.id}
+                                    id={dish._id}
                                     description={dish.description}
                                 />
                             ))}

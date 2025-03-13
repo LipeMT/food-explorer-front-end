@@ -75,12 +75,12 @@ export function EditDish() {
                 description,
                 ingredients,
             }
-            await api.put(`/dishes/${dish.id}`, updated)
+            await api.put(`/dishes/${dish._id}`, updated)
 
             if (dishImageFile) {
                 const formData = new FormData()
                 formData.append('image', dishImageFile)
-                await api.patch(`/dishes/image/${dish.id}`, formData)
+                await api.patch(`/dishes/image/${dish._id}`, formData)
             }
 
             alert("Prato salvo com sucesso!")
@@ -98,7 +98,7 @@ export function EditDish() {
 
     async function handleDelete() {
         try {
-            await api.delete(`/dishes/${dish.id}`)
+            await api.delete(`/dishes/${dish._id}`)
             alert("Prato excluído com sucesso!")
             navigate('/')
         } catch (error) {
@@ -135,14 +135,12 @@ export function EditDish() {
             try {
                 const response = await api.get(`/dishes/${params.id}`)
 
-                const ingredientsName = response.data.ingredients.map(ingredient => ingredient.name)
-
                 setDish(response.data)
                 setName(response.data.name)
-                setCategory(response.data.category_id);
+                setCategory(response.data.category);
                 setPrice(response.data.price);
                 setDescription(response.data.description);
-                setIngredients(ingredientsName || []);
+                setIngredients(response.data.ingredients || []);
                 setDishImage(response.data.image);
             }
             catch (error) {
@@ -219,7 +217,7 @@ export function EditDish() {
                                 <option value="">Selecionar</option>
                                 {
                                     categories.map(category => (
-                                        <option key={category.id} value={category.id}>{category.name}</option>
+                                        <option key={category._id} value={category._id}>{category.name}</option>
                                     ))
                                 }
 

@@ -44,8 +44,8 @@ export function NewDish() {
 
     function handleDishImage(event) {
         const file = event.target.files[0]
-
         const fileUrl = `${api.defaults.baseURL}/files/${file.name}`
+
         setDishImageFile(file)
         setDishImage(fileUrl)
     }
@@ -80,9 +80,10 @@ export function NewDish() {
             const { data } = await api.post('/dishes', newDish)
 
             if (dishImageFile) {
+                console.log(dishImageFile)
                 const formData = new FormData()
                 formData.append('image', dishImageFile)
-                await api.patch(`/dishes/image/${data.dish_id}`, formData)
+                await api.patch(`/dishes/image/${data._id}`, formData)
             }
 
             alert("Prato salvo com sucesso!")
@@ -139,7 +140,7 @@ export function NewDish() {
                         onChange={e => setNewCategory(e.target.value)}
                     />
                 </FormControl>
-                
+
                 <Button title="Salvar categoria" onClick={handleNewCategory} />
             </Modal>
             <Main>
@@ -177,7 +178,7 @@ export function NewDish() {
                                 <option value="">Selecionar</option>
                                 {
                                     categories.map(category => (
-                                        <option key={category.id} value={category.id}>{category.name}</option>
+                                        <option key={category._id} value={category._id}>{category.name}</option>
                                     ))
                                 }
                             </Select>

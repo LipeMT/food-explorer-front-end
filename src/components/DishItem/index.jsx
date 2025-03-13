@@ -1,7 +1,6 @@
 import { FiPlus, FiX } from "react-icons/fi";
 
 import { Container } from "./styles"
-import { useState } from "react";
 
 export function DishItem({ placeholder, isNew = false, value, onClick, ...rest }) {
     
