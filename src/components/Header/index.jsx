@@ -8,21 +8,26 @@ import { Logo } from "../Logo";
 import { Button } from "../Button";
 
 import { useAuth } from "../../hooks/auth";
+import { useSearch } from "../../hooks/search";
+import { useRestaurant } from '../../hooks/restaurant'
 
 import { useNavigate } from "react-router-dom";
 
-export function Header({ onOpenMenu, onChange }) {
+export function Header({ onOpenMenu }) {
 
-    const { user: {role}, signOut } = useAuth()
+    const { user: { role }, signOut } = useAuth()
+    const { restaurant } = useRestaurant()
+
+    const { setSearch } = useSearch()
 
     const navigate = useNavigate()
 
-    async function handleSignOut(){
+    async function handleSignOut() {
         await signOut()
         navigate('/')
     }
 
-    function handleClickNew(){
+    function handleClickNew() {
         navigate('/new')
     }
 
@@ -30,9 +35,12 @@ export function Header({ onOpenMenu, onChange }) {
         <Container>
             <Menu onClick={onOpenMenu}><FiMenu /></Menu>
             <Logo role={role}></Logo>
-            <Search>
-                <Input type="text" icon={FiSearch} placeholder="Busque por pratos ou ingredientes" onChange={onChange} />
-            </Search>
+            {
+                restaurant &&
+                <Search>
+                    <Input type="text" icon={FiSearch} placeholder="Busque por pratos ou ingredientes" onChange={(e) => setSearch(e.target.value)} />
+                </Search>
+            }
             {
                 role === "admin" &&
                 <Button id="new-dish" title="Novo Prato" onClick={handleClickNew} />
@@ -40,7 +48,7 @@ export function Header({ onOpenMenu, onChange }) {
             {
                 role === "admin"
                     ?
-                    <div/>
+                    <div />
                     :
                     <Order>
                         <PiNewspaperClippingBold />

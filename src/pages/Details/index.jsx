@@ -1,4 +1,4 @@
-import { Container, Main, Description, DishDetails, Ingredients, Ingredient, Order } from "./styles";
+import {  Main, Description, DishDetails, Ingredients, Ingredient, Order } from "./styles";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../hooks/auth"
@@ -6,17 +6,13 @@ import { useAuth } from "../../hooks/auth"
 import { FiArrowLeft } from "react-icons/fi";
 import { PiNewspaperClippingBold } from "react-icons/pi";
 
-import { Header } from "../../components/Header"
-import { Footer } from "../../components/Footer"
 import { Quantity } from "../../components/Quantity"
 import { Button } from "../../components/Button"
-import { SideMenu } from "../../components/SideMenu"
 
 import { useState, useEffect } from "react";
 import { api } from "../../services/api";
 
 export function Details() {
-    const [menuIsOpen, setMenuIsOpen] = useState(false)
 
     const [dish, setDish] = useState({})
 
@@ -47,42 +43,34 @@ export function Details() {
     const { user } = useAuth()
 
     return (
-        <Container>
-            <Header onOpenMenu={() => setMenuIsOpen(true)} />
-            <SideMenu menuIsOpen={menuIsOpen} onCloseMenu={() => setMenuIsOpen(false)} />
-
-            <Main>
-                <button onClick={handleBack}><FiArrowLeft /> voltar</button>
-
-                <Description>
-                    <img src={`${api.defaults.baseURL}/files/${dish.image}`} alt="" />
-                    <DishDetails>
-                        <section>
-                            <h2>{dish.name}</h2>
-                            <p>{dish.description}</p>
-                        </section>
-                        {
-                            dish.ingredients &&
-                            <Ingredients>
-                                {dish.ingredients.map(ingredient => <Ingredient key={ingredient}>{ingredient}</Ingredient>)}
-                            </Ingredients>
-                        }
-                        {
-                            user.role !== 'admin' &&
-                            <Order>
-                                <Quantity />
-                                <Button icon={PiNewspaperClippingBold} title={`pedir . R$ ${dish.price}`} />
-                            </Order>
-                        }
-                    </DishDetails>
-                        {
-                            user.role === 'admin' &&
-                            <Button title="Editar Prato" onClick={() => navigate(`/edit/${dish.id}`)}></Button>
-                        }
-                </Description>
-            </Main>
-
-            <Footer />
-        </Container>
+        <Main>
+            <button onClick={handleBack}><FiArrowLeft /> voltar</button>
+            <Description>
+                <img src={`${api.defaults.baseURL}/files/${dish.image}`} alt="" />
+                <DishDetails>
+                    <section>
+                        <h2>{dish.name}</h2>
+                        <p>{dish.description}</p>
+                    </section>
+                    {
+                        dish.ingredients &&
+                        <Ingredients>
+                            {dish.ingredients.map(ingredient => <Ingredient key={ingredient}>{ingredient}</Ingredient>)}
+                        </Ingredients>
+                    }
+                    {
+                        user.role !== 'admin' &&
+                        <Order>
+                            <Quantity />
+                            <Button icon={PiNewspaperClippingBold} title={`pedir . R$ ${dish.price}`} />
+                        </Order>
+                    }
+                </DishDetails>
+                {
+                    user.role === 'admin' &&
+                    <Button title="Editar Prato" onClick={() => navigate(`/edit/${dish.id}`)}></Button>
+                }
+            </Description>
+        </Main>
     )
 }

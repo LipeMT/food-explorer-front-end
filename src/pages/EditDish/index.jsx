@@ -1,14 +1,12 @@
-import { Container, Main, Form, Wrapper } from "./styles";
+import {  Main, Form, Wrapper } from "./styles";
 
 import { Modal } from "../../components/Modal";
 import { Input } from "../../components/Input";
-import { Header } from "../../components/Header";
 import { Select } from "../../components/Select";
 import { Footer } from "../../components/Footer";
 import { Button } from "../../components/Button";
 import { DishItem } from "../../components/DishItem";
 import { TextArea } from "../../components/TextArea";
-import { SideMenu } from "../../components/SideMenu";
 import { FileInput } from "../../components/FileInput";
 import { FormControl } from "../../components/FormControl";
 
@@ -23,7 +21,7 @@ export function EditDish() {
     const [dish, setDish] = useState({})
     const params = useParams()
 
-    const [menuIsOpen, setMenuIsOpen] = useState(false)
+    // const [menuIsOpen, setMenuIsOpen] = useState(false)
     const [name, setName] = useState("")
 
     const [category, setCategory] = useState("")
@@ -163,9 +161,7 @@ export function EditDish() {
     }, [modalIsOpen])
 
     return (
-        <Container>
-            <Header onOpenMenu={() => setMenuIsOpen(true)} />
-            <SideMenu menuIsOpen={menuIsOpen} onCloseMenu={() => setMenuIsOpen(false)} />
+        <Main>
             <Modal isOpen={modalIsOpen} title="Nova Categoria" onClose={() => setModalIsOpen(false)}>
 
                 <FormControl label="Nome da Categoria">
@@ -179,103 +175,103 @@ export function EditDish() {
 
                 <Button title="Salvar categoria" onClick={handleNewCategory} />
             </Modal>
-            <Main>
-                <button onClick={handleBack}><FiArrowLeft /> voltar</button>
-                <Form>
-                    <h1>Editar prato</h1>
 
-                    <FormControl label="Imagem do Prato" className="col-3">
-                        <FileInput
-                            id="dish-image"
-                            icon={<FiUpload />}
-                            title={dishImage ? dishImage : "Selecionar imagem para alterá-la"}
-                            onChange={handleDishImage}
-                        />
-                    </FormControl>
+            <button onClick={handleBack}><FiArrowLeft /> voltar</button>
+            <Form>
+                <h1>Editar prato</h1>
 
-                    <FormControl label="Nome" className="col-5">
-                        <Input
-                            id="name"
-                            type="text"
-                            placeholder="Ex.: Salada Ceasar"
-                            className="gray"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                        />
-                    </FormControl>
+                <FormControl label="Imagem do Prato" className="col-3">
+                    <FileInput
+                        id="dish-image"
+                        icon={<FiUpload />}
+                        title={dishImage ? dishImage : "Selecionar imagem para alterá-la"}
+                        onChange={handleDishImage}
+                    />
+                </FormControl>
 
-                    <FormControl label="Categoria" className="col-4">
-                        <div className="category">
+                <FormControl label="Nome" className="col-5">
+                    <Input
+                        id="name"
+                        type="text"
+                        placeholder="Ex.: Salada Ceasar"
+                        className="gray"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                    />
+                </FormControl>
 
-                            <Select
-                                icon={FiChevronDown}
-                                name="category"
-                                id="category"
-                                value={category}
-                                onChange={e => setCategory(e.target.value)}
-                            >
-                                <option value="">Selecionar</option>
-                                {
-                                    categories.map(category => (
-                                        <option key={category._id} value={category._id}>{category.name}</option>
-                                    ))
-                                }
+                <FormControl label="Categoria" className="col-4">
+                    <div className="category">
 
-                            </Select>
-                            <button id="new-category" type="button" onClick={handleModalCategory}><FiPlus /></button>
-                        </div>
-
-                    </FormControl>
-
-                    <FormControl label="Ingredientes" className="col-9">
-                        <Wrapper>
+                        <Select
+                            icon={FiChevronDown}
+                            name="category"
+                            id="category"
+                            value={category}
+                            onChange={e => setCategory(e.target.value)}
+                        >
+                            <option value="">Selecionar</option>
                             {
-                                ingredients.map((ingredient, index) => (
-                                    <DishItem
-                                        key={index}
-                                        value={ingredient}
-                                        onClick={() => handleDeleteIngredient(ingredient)}
-                                    />
+                                categories.map(category => (
+                                    <option key={category._id} value={category._id}>{category.name}</option>
                                 ))
                             }
 
-                            <DishItem
-                                placeholder="Adicionar"
-                                isNew
-                                value={newIngredient}
-                                onChange={e => setNewIngredient(e.target.value)}
-                                onClick={handleNewIngredient}
-                            />
-                        </Wrapper>
-                    </FormControl>
-
-                    <FormControl label="Preço" className="col-3">
-                        <Input
-                            className="gray"
-                            placeholder="R$ 00,00"
-                            type="number"
-                            value={price}
-                            onChange={e => setPrice(e.target.value)}
-
-                        />
-                    </FormControl>
-
-                    <FormControl label="Descrição" className="col-12">
-                        <TextArea
-                            placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-                            defaultValue={description}
-                            onChange={e => setDescription(e.target.value)}
-                        />
-                    </FormControl>
-                    <div className="actions">
-
-                        <Button title="Excluir Prato" className="gray" id="delete" onClick={handleDelete} />
-                        <Button title="Salvar alterações" className="tomato-400" id="save" onClick={handleUpdate} />
+                        </Select>
+                        <button id="new-category" type="button" onClick={handleModalCategory}><FiPlus /></button>
                     </div>
-                </Form>
-            </Main>
+
+                </FormControl>
+
+                <FormControl label="Ingredientes" className="col-9">
+                    <Wrapper>
+                        {
+                            ingredients.map((ingredient, index) => (
+                                <DishItem
+                                    key={index}
+                                    value={ingredient}
+                                    onClick={() => handleDeleteIngredient(ingredient)}
+                                />
+                            ))
+                        }
+
+                        <DishItem
+                            placeholder="Adicionar"
+                            isNew
+                            value={newIngredient}
+                            onChange={e => setNewIngredient(e.target.value)}
+                            onClick={handleNewIngredient}
+                        />
+                    </Wrapper>
+                </FormControl>
+
+                <FormControl label="Preço" className="col-3">
+                    <Input
+                        className="gray"
+                        placeholder="R$ 00,00"
+                        type="number"
+                        value={price}
+                        onChange={e => setPrice(e.target.value)}
+
+                    />
+                </FormControl>
+
+                <FormControl label="Descrição" className="col-12">
+                    <TextArea
+                        placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+                        defaultValue={description}
+                        onChange={e => setDescription(e.target.value)}
+                    />
+                </FormControl>
+                <div className="actions">
+
+                    <Button title="Excluir Prato" className="gray" id="delete" onClick={handleDelete} />
+                    <Button title="Salvar alterações" className="tomato-400" id="save" onClick={handleUpdate} />
+                </div>
+            </Form>
+
 
             <Footer />
-        </Container>
+        </Main>
     )
 }

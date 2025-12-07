@@ -1,18 +1,19 @@
 import { BrowserRouter } from "react-router-dom";
 
-import { useEffect } from "react";
-
-import { api } from "../services/api";
-
-import { CustomRoutes } from "./custom.routes";
-import { AdminRoutes } from "./admin.routes";
+import { CustomRoutes } from "./Access/custom.routes";
+import { AdminRoutes } from "./Access/admin.routes";
+import { RestaurantsRoutes } from "./Access/restaurants.routes"
 import { AuthRoutes } from "./auth.routes";
 
 import { useAuth } from "../hooks/auth";
+import { SearchProvider } from "../hooks/search";
+import { useRestaurant } from "../hooks/restaurant";
 
 export function Routes() {
 
-    const { user, signOut } = useAuth()
+    const { user } = useAuth()
+
+    const { restaurant } = useRestaurant()
 
     function AccessRoutes() {
         switch (user.role) {
@@ -27,17 +28,11 @@ export function Routes() {
         }
     }
 
-    useEffect(() => {
-        api.get('/users/validated')
-            .catch((error) => {
-                if (error.response?.status === 401)
-                    signOut()
-            })
-    }, [])
-
     return (
-        <BrowserRouter basename="/food-explorer-front-end">
-            {user ? <AccessRoutes /> : <AuthRoutes />}
-        </BrowserRouter>
+        <SearchProvider>
+            <BrowserRouter basename="/food-explorer-front-end">
+                {(user && restaurant) ? <AccessRoutes /> : (user ? <RestaurantsRoutes /> : <AuthRoutes />)}
+            </BrowserRouter>
+        </SearchProvider>
     )
 }

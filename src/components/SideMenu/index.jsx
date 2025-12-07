@@ -7,7 +7,6 @@ import { useAuth } from "../../hooks/auth";
 import { Input } from "../Input";
 import { Footer } from "../Footer";
 import { SideSection } from "../SideSection";
-import { ButtonText } from "../ButtonText";
 import { useNavigate } from "react-router-dom";
 
 export function SideMenu({ menuIsOpen, onCloseMenu, onChange }) {
@@ -40,7 +39,6 @@ export function SideMenu({ menuIsOpen, onCloseMenu, onChange }) {
                 <SideSection title="Sair" onClick={handleSignOut} />
             </Main>
             <Footer />
-
         </Container>
     )
 }

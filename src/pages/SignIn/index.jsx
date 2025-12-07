@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from '../../hooks/auth'
 
 import { Container, Form } from "./styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
@@ -14,9 +14,21 @@ export function SignIn() {
     const [password, setPassword] = useState("")
 
     const { signIn } = useAuth()
+    const navigate = useNavigate()
 
-    function handleSignIn() {
-        signIn({ email, password })
+    async function handleSignIn() {
+        try {
+            const logged = await signIn({ email, password })
+            if(logged) navigate('/restaurants')
+                
+        } catch (error) {
+            console.log(error)
+            if (error.response) {
+                alert(error.response.data.message)
+            } else {
+                alert('Erro ao fazer login')
+            }
+        }
     }
 
     return (

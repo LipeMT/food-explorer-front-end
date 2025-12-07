@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
 import { AuthProvider } from './hooks/auth'
+import { RestaurantProvider } from './hooks/restaurant'
 
 import { Routes } from './routes'
 
@@ -15,7 +16,9 @@ createRoot(document.getElementById('root')).render(
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <AuthProvider>
-        <Routes />
+        <RestaurantProvider>
+          <Routes />
+        </RestaurantProvider>
       </AuthProvider>
     </ThemeProvider>
   </StrictMode>,

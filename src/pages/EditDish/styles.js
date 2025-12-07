@@ -1,40 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-
-    > header {
-        height: 114px;
-        flex-shrink: 0;
-    }
-
-    > main {
-        flex-grow: 1;
-        overflow-y: auto;
-    }
-
-    > footer {
-        height: 77px;
-        flex-shrink: 0;
-    }
-
-    transition: all .5s ease-in;
-
-    @media (min-width: 768px) {
-        > main {
-            padding: 3rem 8rem;
-        }
-    }
-
-    @media (min-width: 1024px) {
-        > main {
-            padding: 4rem 12.5rem;
-        }
-    }
-`;
-
 export const Main = styled.main`
     overflow-y: auto;
     scrollbar-width: none;

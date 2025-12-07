@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.aside`
-
     display: grid;
     grid-template-rows: auto 1fr 77px;
     grid-template-areas: 
@@ -25,8 +24,6 @@ export const Container = styled.aside`
 `
 
 export const Header = styled.header`
-    
-
     padding: 5.6rem 2.8rem 2.4rem;
 
     font-size: 2.4rem;
@@ -55,8 +52,6 @@ export const Header = styled.header`
 
 export const Main = styled.main`
     background-color: ${({theme}) => theme.COLORS.DARK_400};
-
-    
     padding: 3.6rem 2.8rem;
 
     width: 100%;
@@ -64,7 +59,6 @@ export const Main = styled.main`
     div:nth-child(1){
         margin-bottom: 3.2rem;
     }
-
 
     @media (min-width: 768px){
         display: none;
